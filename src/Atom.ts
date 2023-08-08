@@ -30,12 +30,18 @@ export const changeToggleboolean = selector({
   },
 });
 
-interface TodoItem {
-  id: number;
-  text: string;
-  isCompleted: boolean;
-}
-export const todoListState = atom<TodoItem[]>({
-  key: "todoListsTate",
-  default: [],
+export const mininuteState = atom({
+  key: "mininuteState",
+  default: 0,
+});
+export const minuteStateFunc = selector({
+  key: "minuteStateFunc",
+  get: ({ get }) => {
+    const hour = get(mininuteState) / 60;
+    return hour;
+  },
+  set: ({ set }, newVal) => {
+    const minute = Number(newVal) * 60;
+    set(mininuteState, minute);
+  },
 });
