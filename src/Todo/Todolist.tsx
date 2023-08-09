@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { mininuteState, minuteStateFunc } from "../Atom";
+import { DragDropContext } from "react-beautiful-dnd";
 const TodoList = () => {
   const [minute, setMinute] = useRecoilState(mininuteState);
   const [hour, setHour] = useRecoilState(minuteStateFunc);
@@ -11,8 +12,14 @@ const TodoList = () => {
   const onChangeHour = (e: React.FormEvent<HTMLInputElement>) => {
     setHour(+e.currentTarget.value);
   };
+  const onDragEnd = () => {};
   return (
     <>
+      <div>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <span>he</span>
+        </DragDropContext>
+      </div>
       <input
         type="text"
         placeholder="분을 입력하세요"
