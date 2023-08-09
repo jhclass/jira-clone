@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { mininuteState, minuteStateFunc } from "../Atom";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 const TodoList = () => {
   const [minute, setMinute] = useRecoilState(mininuteState);
   const [hour, setHour] = useRecoilState(minuteStateFunc);
@@ -17,7 +17,9 @@ const TodoList = () => {
     <>
       <div>
         <DragDropContext onDragEnd={onDragEnd}>
-          <span>he</span>
+          <div>
+            <Droppable droppableId="one"></Droppable>
+          </div>
         </DragDropContext>
       </div>
       <input
