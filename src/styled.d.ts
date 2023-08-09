@@ -4,6 +4,9 @@ declare module "styled-components" {
   interface DefaultTheme {
     blackColor: string;
     whiteColor: string;
+    bgColor: string;
+    cardColor: string;
+    boardColor: string;
   }
   interface FontPropsTheme {
     h1Size: string;
