@@ -11,11 +11,9 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <ThemeProvider theme={bgTheme}>
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </RecoilRoot>
-  </React.StrictMode>
+  <RecoilRoot>
+    <ThemeProvider theme={bgTheme}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </RecoilRoot>
 );

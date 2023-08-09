@@ -18,7 +18,31 @@ const TodoList = () => {
       <div>
         <DragDropContext onDragEnd={onDragEnd}>
           <div>
-            <Droppable droppableId="one"></Droppable>
+            <Droppable droppableId="one">
+              {(dnd) => (
+                <ul ref={dnd.innerRef} {...dnd.droppableProps}>
+                  <Draggable draggableId="dragOne" index={0}>
+                    {(dnd) => (
+                      <li
+                        ref={dnd.innerRef}
+                        {...dnd.draggableProps}
+                        {...dnd.dragHandleProps}
+                      >
+                        hello1
+                      </li>
+                    )}
+                  </Draggable>
+                  <Draggable draggableId="dragTwo" index={1}>
+                    {(dnd) => (
+                      <li ref={dnd.innerRef} {...dnd.draggableProps}>
+                        <span {...dnd.dragHandleProps}> hello2</span>{" "}
+                        {/**드래그의 시작점 (li 전체? || span 에서만?) === dragHandleProps 가 있는 요소 범위 */}
+                      </li>
+                    )}
+                  </Draggable>
+                </ul>
+              )}
+            </Droppable>
           </div>
         </DragDropContext>
       </div>
