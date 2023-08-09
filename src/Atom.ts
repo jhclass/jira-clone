@@ -45,3 +45,8 @@ export const minuteStateFunc = selector({
     set(mininuteState, minute);
   },
 });
+
+export const todoState = atom({
+  key: "todoState",
+  default: ["a", "b", "c", "d", "e", "f"],
+});

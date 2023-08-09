@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { mininuteState, minuteStateFunc } from "../Atom";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { mininuteState, minuteStateFunc, todoState } from "../Atom";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from "react-beautiful-dnd";
+import { isIPv4 } from "net";
 const Wrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -37,13 +43,22 @@ const toDos = ["a", "b", "c", "d", "e"];
 const TodoList = () => {
   const [minute, setMinute] = useRecoilState(mininuteState);
   const [hour, setHour] = useRecoilState(minuteStateFunc);
+  const [todos, setTodos] = useRecoilState(todoState);
   const onChangeMinute = (e: React.FormEvent<HTMLInputElement>) => {
     setMinute(+e.currentTarget.value);
   };
   const onChangeHour = (e: React.FormEvent<HTMLInputElement>) => {
     setHour(+e.currentTarget.value);
   };
-  const onDragEnd = () => {};
+  const onDragEnd = ({ destination, source }: DropResult) => {
+    if (!destination) return;
+    setTodos((oldTodos) => {
+      const copy = [...oldTodos];
+      const newItem = copy.splice(source.index, 1);
+      copy.splice(destination?.index, 0, String(newItem));
+      return copy;
+    });
+  };
   return (
     <>
       <Wrapper>
@@ -52,7 +67,7 @@ const TodoList = () => {
             <Droppable droppableId="one">
               {(dnd) => (
                 <Cards ref={dnd.innerRef} {...dnd.droppableProps}>
-                  {toDos.map((item, index) => (
+                  {todos.map((item, index) => (
                     <Draggable
                       draggableId={"one" + index}
                       index={index}
