@@ -48,5 +48,12 @@ export const minuteStateFunc = selector({
 
 export const todoState = atom({
   key: "todoState",
-  default: ["a", "b", "c", "d", "e", "f"],
+  default: [
+    { 이름: { Todo: "오늘의 할일1", info: "제대로 할수 있을지 모르겠다" } },
+    { 이름: { Todo: "오늘의 할일2", info: "제대로 할수 있을지 모르겠다" } },
+    { 이름: { Todo: "오늘의 할일3", info: "제대로 할수 있을지 모르겠다" } },
+    { 이름: { Todo: "오늘의 할일4", info: "제대로 할수 있을지 모르겠다" } },
+    { 이름: { Todo: "오늘의 할일5", info: "제대로 할수 있을지 모르겠다" } },
+    { 이름: { Todo: "오늘의 할일6", info: "제대로 할수 있을지 모르겠다" } },
+  ],
 });

@@ -8,7 +8,7 @@ import {
   Droppable,
   DropResult,
 } from "react-beautiful-dnd";
-import { isIPv4 } from "net";
+
 const Wrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -38,8 +38,6 @@ const Card = styled.li`
   }
 `;
 
-const toDos = ["a", "b", "c", "d", "e"];
-
 const TodoList = () => {
   const [minute, setMinute] = useRecoilState(mininuteState);
   const [hour, setHour] = useRecoilState(minuteStateFunc);
@@ -55,7 +53,7 @@ const TodoList = () => {
     setTodos((oldTodos) => {
       const copy = [...oldTodos];
       const newItem = copy.splice(source.index, 1);
-      copy.splice(destination?.index, 0, String(newItem));
+      copy.splice(destination?.index, 0, newItem[0]);
       return copy;
     });
   };
@@ -79,7 +77,11 @@ const TodoList = () => {
                           {...dnd.draggableProps}
                           {...dnd.dragHandleProps}
                         >
-                          {item}
+                          우선순위 : {index + 1}
+                          <br />
+                          {item["이름"].Todo}
+                          <br />
+                          {item["이름"].info}
                         </Card>
                       )}
                     </Draggable>
