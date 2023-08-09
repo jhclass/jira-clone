@@ -69,6 +69,7 @@ const TodoList = () => {
                       )}
                     </Draggable>
                   ))}
+                  {dnd.placeholder}
                 </Cards>
               )}
             </Droppable>
