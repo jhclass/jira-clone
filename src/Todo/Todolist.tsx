@@ -32,6 +32,8 @@ const Card = styled.li`
   }
 `;
 
+const toDos = ["a", "b", "c", "d", "e"];
+
 const TodoList = () => {
   const [minute, setMinute] = useRecoilState(mininuteState);
   const [hour, setHour] = useRecoilState(minuteStateFunc);
@@ -50,29 +52,23 @@ const TodoList = () => {
             <Droppable droppableId="one">
               {(dnd) => (
                 <Cards ref={dnd.innerRef} {...dnd.droppableProps}>
-                  <Draggable draggableId="dragOne" index={0}>
-                    {(dnd) => (
-                      <Card
-                        ref={dnd.innerRef}
-                        {...dnd.draggableProps}
-                        {...dnd.dragHandleProps}
-                      >
-                        hello1
-                      </Card>
-                    )}
-                  </Draggable>
-                  <Draggable draggableId="dragTwo" index={1}>
-                    {(dnd) => (
-                      <Card
-                        ref={dnd.innerRef}
-                        {...dnd.draggableProps}
-                        {...dnd.dragHandleProps}
-                      >
-                        <span> hello2</span>{" "}
-                        {/**드래그의 시작점 (li 전체? || span 에서만?) === dragHandleProps 가 있는 요소 범위 */}
-                      </Card>
-                    )}
-                  </Draggable>
+                  {toDos.map((item, index) => (
+                    <Draggable
+                      draggableId={"one" + index}
+                      index={index}
+                      key={index}
+                    >
+                      {(dnd) => (
+                        <Card
+                          ref={dnd.innerRef}
+                          {...dnd.draggableProps}
+                          {...dnd.dragHandleProps}
+                        >
+                          {item}
+                        </Card>
+                      )}
+                    </Draggable>
+                  ))}
                 </Cards>
               )}
             </Droppable>
